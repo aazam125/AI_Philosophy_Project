@@ -24,5 +24,3 @@ def get_response(prompt: str, persona: str) -> str:
         return "We do not recognize that name, you will make sure to make a note to add it."
         
 
-if __name__ == "__main__":
-    print(get_response("Hi", "aurelius"))
