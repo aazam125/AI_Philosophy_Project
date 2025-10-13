@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>AI Philosophy Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
-    <div class="about-section">
-        <h2> About this Project</h2>
-        <p>I wanted to expand my mind and do it in a fun way.</p>
-        <p>I created a project that would be useful to me and others with a deep passion in philosophy.</p>
-        <p>There are more philosophers to come, I hope that you enjoy!</p>
-        <img src="https://www.invaluable.com/blog/wp-content/uploads/sites/77/2018/12/shutterstock_753294010.jpg" alt="Socrates Statue" width="150">
-        <br>
-        <a href="https://github.com/aazam125" target="_blank">Visit my GitHub</a>
-    </div>
-    <div class = "philosophers-section">
-        <div class = "philosopher" id = "socrates">
-            <h3>Socrates</h3>
-            <img src="https://ukcognitive.wordpress.com/wp-content/uploads/2014/12/socrates.jpg" alt="Socrates Statue" width="250">
-            <p>Socrates, born in Athens in the year 470 BCE was a philosopher who is said to be the first to bring philosophy down from the heavens. Meaning that he was the first for practical application.</p>
-            <p>Greatest Quote: Socrates is special because the most important thing we learn from him is to think crtically not be like a sophist relying heavily on quotes or mantras. However his greatest quote is "The unexamined life is not worth living".</p>
-        </div>
-        <div class = "philosopher" id = "plato">
-            <h3>Plato</h3>
-            <img src="https://cdn.britannica.com/88/149188-050-DC34842F/Plato-portrait-bust-original-Capitoline-Museums-Rome.jpg" alt="Plato Statue" width="250">
-            <p>Plato, born in Athens in the year 428 BCE was a philosopher who created the first western institution in the world around 387 BC, he is most famous for his book the Republic a philosophical masterpiece.</p>
-            <p>Greatest Quote: "Wise men talk because they have something to say; fools, because they have to say something".</p>
-        </div>
-        <div class = "philosopher" id = "aurelius">
-            <h3>Marcus Aurelius</h3>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/MSR-ra-61-b-1-DM.jpg/960px-MSR-ra-61-b-1-DM.jpg" alt="Aurelius Statue" width="250">
-            <p>Marcus Aurelius, born Rome in 121 AD was the emperor of the Roman Empire and the most powerful man in the world at his time, however despite this power, Aurelius decided to follow a life of virtue through philosophy and his most famous for the Meditations, his own private journal found and published, widely considered one of the greatest books of all time</p>
-            <p>Greatest Quote: "When jarred, unavoidably, by circumstances, revert at once to yourself, and don’t lose the rhythm more than you can help. You’ll have a better grasp of the harmony if you keep on going back to it".</p>
-        </div>
-        </div>
+    <nav class="navbar">
+      <div class="nav-brand">AI Philosophy</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/chat">Chat</a></li>
+        <li><a href="/speak">Speak</a></li>
+        <li><a href="/quotes">Quotes</a></li>
+        <li><a href="/philosophers">Philosophers</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero-section">
+      <h1>Converse with the Greatest Minds in History</h1>
+      <p>Ask questions or engage in dialogue with legendary philosophers who shaped how humanity thinks, acts, and understands itself.</p>
+      <a href="/chat">Chat Now</a>
+      <a href="/speak">Speak Now</a>
+    </header>
+
+    <section class="about-section">
+      <div class="divider"></div>
+      <div class="about-wrap">
+        <h2>About This Project</h2>
+        <p>The <strong>AI Philosophy Project</strong> was born from my lifelong fascination with philosophy and my want to bring these philosophers to life. From the wisdom of the Stoics to the rational dialogues of the Greeks, I’ve always believed philosophy gives us a foundation for understanding life and decision-making. I wanted to recreate those timeless exchanges in a way that anyone could experience, not just by reading, but by conversing with the thinkers themselves.</p>
+        <p>This project was developed using <strong>Python</strong> and <strong>Flask</strong> for the backend, integrating <strong>HTML</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong> for the interface. The intelligence behind the dialogues is powered by <strong>OpenAI’s API</strong>, giving each philosopher their own authentic reasoning style and tone. </p>
+        <p>I really hope that you enjoy using this project as much as I did making it, it mixed two of my greatest passions, philosophy and software engineering, two disciplines that advance humanity in their own way.</p>
+        <a class="project-link" href="https://github.com/aazam125/AI_Philosophy_Project" target="_blank" rel="noopener">View the Full Project on GitHub →</a>
+      </div>
+    </section>
   </body>
 </html>
+

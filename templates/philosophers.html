@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Philosophers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='philosophers.css') }}">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-brand">AI Philosophy</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/chat">Chat</a></li>
+        <li><a href="/speak">Speak</a></li>
+        <li><a href="/quotes">Quotes</a></li>
+        <li><a href="/philosophers">Philosophers</a></li>
+      </ul>
+    </nav>
+
+    <section class="about-section">
+      <div class="about-wrap">
+        <h2>About the Philosophers</h2>
+        <p>Explore the story behind the wisdom. Each profile follows the pressures, choices, and turning points that shaped a thinker’s ideas, helping you apply their lessons with clarity in your own life.</p>
+      </div>
+    </section>
+
+    <section class="philosophers-list">
+      <a class="philo-card" href="/philosophers/socrates">
+        <div class="philo-media">
+          <img src="https://www.mediastorehouse.com/p/690/portrait-socrates-engraving-38480052.jpg.webp" alt="Socrates">
+        </div>
+        <div class="philo-body">
+          <h3>Socrates</h3>
+          <p>The foundational figure of Western philosophy, focused on the pursuit of virtue and self-knowledge through relentless questioning, believing that an unexamined life wasn't worth living.</p>
+          <span class="philo-cta">Read the full profile →</span>
+        </div>
+      </a>
+
+      <a class="philo-card" href="/philosophers/plato">
+        <div class="philo-media">
+          <img src="https://media.sciencephoto.com/c0/11/84/19/c0118419-800px-wm.jpg" alt="Plato">
+        </div>
+        <div class="philo-body">
+          <h3>Plato</h3>
+          <p>Socrates most famous student, developed the theory of Forms, suggesting that the physical world is merely a shadow of a higher, eternal reality of perfect ideals, and championed a state governed by philosopher-kings.</p>
+          <span class="philo-cta">Read the full profile →</span>
+        </div>
+      </a>
+
+      <a class="philo-card" href="/philosophers/aurelius">
+        <div class="philo-media">
+          <img src="https://cdnb.artstation.com/p/assets/images/images/047/751/167/large/clint-philomart-marcus.jpg?1648367475" alt="Marcus Aurelius">
+        </div>
+        <div class="philo-body">
+          <h3>Marcus Aurelius</h3>
+          <p>Stoic philosopher and Roman emperor, emphasized living in harmony with nature and reason, focusing on inner peace and duty through self-control and acceptance of what one cannot change.</p>
+          <span class="philo-cta">Read the full profile →</span>
+        </div>
+      </a>
+    </section>
+  </body>
+</html>
