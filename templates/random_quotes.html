@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AI Philosophy Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='random_quotes.css') }}">
+  </head> 
+  <body>
+
+    <nav class="navbar">
+      <div class="nav-brand">AI Philosophy</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/chat">Chat</a></li>
+        <li><a href="/speak">Speak</a></li>
+        <li><a href="/quotes">Quotes</a></li>
+        <li><a href="/philosophers">Philosophers</a></li>
+      </ul>
+    </nav>
+
+    <header class="intro-section">
+      <h1>Spin For Wisdom</h1>
+      <p>Let chance decide which quote is right for you.</p>
+    </header>
+
+    <main class="random-wrap">
+      <div class="viewport" id="quote-viewport">
+        <div class="track" id="quote-track">
+          <div class="line">Tap “Spin” to begin. — AI Philosophy</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn-spin" id="spin-btn">Spin</button>
+      </div>
+    </main>
+
+    <script>
+      const button = document.getElementById("spin-btn");
+      const track = document.getElementById("quote-track");
+      const viewport = document.getElementById("quote-viewport");
+      let isSpinning = false;
+
+      const placeholders = [
+        { text: "The impediment to action advances action.", author: "Marcus Aurelius" },
+        { text: "You have power over your mind—not outside events.", author: "Marcus Aurelius" },
+        { text: "Waste no more time arguing what a good man should be. Be one.", author: "Marcus Aurelius" },
+        { text: "We suffer more often in imagination than in reality.", author: "Seneca" },
+        { text: "He suffers more than necessary, who suffers before it is necessary.", author: "Seneca" },
+        { text: "Difficulties strengthen the mind, as labor does the body.", author: "Seneca" },
+        { text: "It is not events that disturb people, but their judgments about them.", author: "Epictetus" },
+        { text: "Don’t explain your philosophy. Embody it.", author: "Epictetus" },
+        { text: "First say to yourself what you would be; then do what you have to do.", author: "Epictetus" },
+        { text: "The unexamined life is not worth living.", author: "Socrates" },
+        { text: "If it is not right, do not do it; if it is not true, do not say it.", author: "Marcus Aurelius" },
+        { text: "Time discovers truth.", author: "Seneca" }
+      ];
+
+      async function fetchQuote() {
+        try {
+          const res = await fetch("/api/random-quote", { headers: { "Accept": "application/json" } });
+          if (!res.ok) throw new Error("Bad response");
+          const data = await res.json();
+          const text = data?.text || data?.quote || "Couldn’t fetch a quote. Try again.";
+          const author = data?.author || "Unknown";
+          return { text, author };
+        } catch {
+          return { text: "Couldn’t fetch a quote. Try again.", author: "Unknown" };
+        }
+      }
+
+      function buildTrack(finalItem) {
+        track.innerHTML = "";
+        const reel = [...placeholders, finalItem];
+        for (const item of reel) {
+          const d = document.createElement("div");
+          d.className = "line";
+          d.textContent = `${item.text} — ${item.author}`;
+          track.appendChild(d);
+        }
+        const first = track.querySelector(".line");
+        const lineHeight = first ? first.getBoundingClientRect().height : 0;
+        const index = reel.length - 1;
+        return { lineHeight, index };
+      }
+
+      function animateTo(index, lineHeight, durationMs = 1400) {
+        return new Promise(resolve => {
+          track.style.transition = "none";
+          track.style.transform = "translateY(0)";
+          void track.offsetHeight;
+          track.style.transition = `transform ${durationMs}ms ease-out`;
+          track.style.transform = `translateY(-${index * lineHeight}px)`;
+          let done = false;
+          const cleanup = () => {
+            if (done) return;
+            done = true;
+            track.removeEventListener("transitionend", onEnd);
+            resolve();
+          };
+          const onEnd = () => cleanup();
+          track.addEventListener("transitionend", onEnd);
+          setTimeout(cleanup, durationMs + 120);
+        });
+      }
+
+      button.addEventListener("click", async () => {
+        if (isSpinning) return;
+        isSpinning = true;
+        button.disabled = true;
+        const label = button.textContent;
+        button.textContent = "Spinning…";
+
+        const finalItem = await fetchQuote();
+        const { lineHeight, index } = buildTrack(finalItem);
+        await animateTo(index, lineHeight);
+
+        button.disabled = false;
+        button.textContent = label;
+        isSpinning = false;
+      });
+    </script>
+  </body>
+</html>

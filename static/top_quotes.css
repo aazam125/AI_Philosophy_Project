@@ -5,15 +5,16 @@
   --panel: #241b16;
   --text-ivory: #efe9dd;
   --text-body: #d7cec2;
+  --text-dim: #b8afa4;
   --accent: #d1a054;
   --accent-hover: #c49349;
   --border: rgba(239,233,221,0.12);
   --radius: 12px;
   --container-pad: clamp(16px,6vw,48px);
-  --content-max: 900px;
+  --content-max: 1000px;
 }
 
-/* RESET */
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
   background: var(--bg);
@@ -23,7 +24,6 @@ html, body {
   letter-spacing: 0.02em;
 }
 
-/* NAVBAR */
 .navbar {
   background: var(--panel);
   border-bottom: 1px solid var(--border);
@@ -59,93 +59,100 @@ html, body {
   box-shadow: 0 8px 22px rgba(0,0,0,.25);
 }
 
-/* INTRO SECTION */
-.intro-section {
+/* HEADER */
+.page-header {
   text-align: center;
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: clamp(70px,8vw,100px) var(--container-pad);
+  padding: clamp(60px,7vw,100px) var(--container-pad) 40px;
 }
-.intro-section h1 {
+.page-header h1 {
   color: var(--text-ivory);
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(2.4rem,5vw,3.2rem);
   font-weight: 700;
-  margin-bottom: 2rem;
+  font-size: clamp(2.2rem,4.8vw,3.1rem);
+  margin-bottom: 1.5rem;
 }
-.intro-section p {
-  font-size: 1.15rem;
-  line-height: 2.3;
-  margin-bottom: 2rem;
+.page-header p {
+  font-size: 1.12rem;
+  line-height: 2.2;
   color: var(--text-body);
-  opacity: 0.96;
-}
-.sub-text {
-  font-size: 1.05rem;
-  opacity: 0.8;
-  margin-top: 2rem;
+  opacity: 0.95;
+  max-width: 70ch;
+  margin: 0 auto;
 }
 
-/* BUTTONS (Both use the Spin style) */
-.quote-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 2.2rem;
+
+.quotes-container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad) 80px;
+  display: grid;
+  gap: 22px;
 }
-.btn {
-  display: inline-block;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: var(--radius);
-  padding: 14px 26px;
-  font-size: 1.1rem;
-  transition: all 0.25s ease;
-  background: transparent;
-  color: var(--accent);
-  border: 2px solid var(--accent);
+
+/* CARD STYLE */
+.quote-card {
   position: relative;
-  overflow: hidden;
-  animation: pulse 2.5s infinite;
+  background: #2b211b;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px 22px 64px;
+  box-shadow: 0 16px 36px rgba(0,0,0,.35);
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(209,160,84,0.1), rgba(209,160,84,0.4), rgba(209,160,84,0.1));
-  transition: left 0.4s ease;
-}
-.btn:hover::before {
-  left: 100%;
-}
-.btn:hover {
-  color: var(--text-ivory);
-  border-color: var(--accent-hover);
+.quote-card:hover {
   transform: translateY(-2px);
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(209,160,84,0.3); }
-  70% { box-shadow: 0 0 0 10px rgba(209,160,84,0); }
-  100% { box-shadow: 0 0 0 0 rgba(209,160,84,0); }
+  box-shadow: 0 22px 46px rgba(0,0,0,.45);
+  border-color: rgba(209,160,84,0.35);
 }
 
-/* RESPONSIVE */
+
+.quote-number {
+  position: absolute;
+  top: 22px;
+  left: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+
+.quote-card blockquote {
+  color: var(--text-ivory);
+  font-size: 1.18rem;
+  line-height: 2.2;
+  font-style: italic;
+  margin-bottom: 1.2rem;
+}
+.quote-card cite {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
+  display: block;
+  text-align: right;
+}
+
+
+.loading-text,
+.error-text {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  margin-top: 60px;
+}
+
 @media (max-width: 720px) {
-  .intro-section {
-    padding: 60px 22px;
+  .quote-card {
+    padding: 20px 20px 20px 56px;
   }
-  .intro-section p {
-    font-size: 1.08rem;
-    line-height: 2.25;
+  .quote-number {
+    font-size: 1.4rem;
   }
-  .quote-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  .btn {
-    width: 80%;
-    max-width: 260px;
+  .quote-card blockquote {
+    font-size: 1.05rem;
   }
 }
+

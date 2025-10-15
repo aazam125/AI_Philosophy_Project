@@ -5,29 +5,15 @@ from flask import Flask, request, render_template, jsonify
 import json
 import random
 from pathlib import Path
-from chatbot import get_response, get_quotes
+from chatbot import get_response, get_top_quotes,get_random_quote
 
 
 templates_path = Path(__file__).resolve().parent.parent.joinpath('templates')
 static_path = Path(__file__).resolve().parent.parent.joinpath('static')
 
-# load quotes only once when the server starts
-with open("src/static/quotes.json", "r", encoding="utf-8") as f:
-    ALL_QUOTES = json.load(f)
-
-# Getting the top 25 Quotes from quotes.json
-def get_top_quotes(n=25):
-    return ALL_QUOTES[:n]
-
-# Getting a random quote from quotes.json
-def get_random_quote():
-    return random.choice(ALL_QUOTES)
-
 
 # Initialize Flask and link it to the template and static directories
 app = Flask(__name__, template_folder=str(templates_path), static_folder=str(static_path))
-
-
 
 # Homepage route 
 @app.route('/')
@@ -60,19 +46,29 @@ def api_speak():
     user_question = data.get('question')
     return jsonify({"persona": desired_persona, "question": user_question, "answer": get_response(user_question, desired_persona)})
 
-# UI for getting philosophy quotes 
+# UI for getting philosophy quotes main page
 @app.route('/quotes')
 def quotes():
     return render_template('quotes.html')
 
+# UI for getting the top 25 quotes
+@app.route('/quotes/top')
+def top_quotes():
+    return render_template('top_quotes.html')
+
 # API connecting backend to frontend giving user top 25 quote
 @app.route("/api/top-quotes")
-def top_quotes():
+def api_top_quotes():
     return jsonify(get_top_quotes())
+
+# UI for getting a random quote
+@app.route('/quotes/random')
+def random_quotes():
+    return render_template('random_quotes.html')
 
 # API connecting backend to frontend giving user randomized quotes from selected philosophers
 @app.route("/api/random-quote")
-def random_quote():
+def api_random_quote():
     return jsonify(get_random_quote())
     
 

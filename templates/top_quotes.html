@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Top 25 Quotes — AI Philosophy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='top_quotes.css') }}">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-brand">AI Philosophy</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/chat">Chat</a></li>
+        <li><a href="/speak">Speak</a></li>
+        <li><a href="/quotes" class="active">Quotes</a></li>
+        <li><a href="/philosophers">Philosophers</a></li>
+      </ul>
+    </nav>
+
+    <header class="page-header">
+      <h1>Top 25 Timeless Quotes</h1>
+      <p>These words have outlasted kingdoms and generations — fragments of thought that still whisper to the modern mind. Each one distills the discipline, clarity, and resilience that true philosophy seeks.</p>
+    </header>
+
+    <main class="quotes-container" id="quotes-container">
+      <p class="loading-text">Loading quotes...</p>
+    </main>
+
+    <script>
+      async function loadQuotes() {
+        const container = document.getElementById("quotes-container");
+        try {
+          const res = await fetch("/api/top-quotes");
+          const quotes = await res.json();
+          container.innerHTML = "";
+
+          quotes.forEach((q, index) => {
+            const card = document.createElement("div");
+            card.className = "quote-card";
+            card.innerHTML = `
+              <div class="quote-number">${index + 1}</div>
+              <blockquote>"${q.text}"</blockquote>
+              <cite>— ${q.author}</cite>
+            `;
+            container.appendChild(card);
+          });
+        } catch (err) {
+          container.innerHTML = "<p class='error-text'>Failed to load quotes. Please try again later.</p>";
+        }
+      }
+
+      loadQuotes();
+    </script>
+  </body>
+</html>

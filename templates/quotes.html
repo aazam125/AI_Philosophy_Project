@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AI Philosophy Project — Quotes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='quotes.css') }}">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-brand">AI Philosophy</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/chat">Chat</a></li>
+        <li><a href="/speak">Speak</a></li>
+        <li><a href="/quotes" class="active">Quotes</a></li>
+        <li><a href="/philosophers">Philosophers</a></li>
+      </ul>
+    </nav>
+
+    <header class="intro-section">
+      <h1>Timeless Quotes</h1>
+      <p>Explore wisdom that has guided minds for millennia, from Socrates’ questions to Aurelius’ calm resolve. Every quote offers a reflection that still shapes how we live, think, and endure.</p>
+
+      <div class="quote-buttons">
+        <a href="/quotes/top" class="btn">Top 25</a>
+        <a href="/quotes/random" class="btn">Spin for Wisdom</a>
+      </div>
+
+      <p class="sub-text">Browse the most influential ideas in history or let chance reveal one that speaks to you today.</p>
+    </header>
+  </body>
+</html>
